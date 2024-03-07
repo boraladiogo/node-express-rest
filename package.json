@@ -5,6 +5,9 @@
   "repository": "git@github.com:boraladiogo/express-rest.git",
   "author": "Diogo Martins <boraladiogo@gmail.com>",
   "license": "MIT",
+  "scripts": {
+    "dev": "node --watch src/index.js"
+  },
   "dependencies": {
     "express": "^4.18.3"
   },
