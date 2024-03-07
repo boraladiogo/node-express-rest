@@ -1,0 +1,8 @@
+{
+  "name": "express-rest",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:boraladiogo/express-rest.git",
+  "author": "Diogo Martins <boraladiogo@gmail.com>",
+  "license": "MIT"
+}
