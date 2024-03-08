@@ -18,5 +18,6 @@ class ContactController {
     delete() {
         // Remover um registro
     }
-
 }
+
+module.exports = new ContactController();
