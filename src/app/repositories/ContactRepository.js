@@ -17,6 +17,10 @@ const contacts = [
     },
 ];
 
-class ContactRepository {}
+class ContactRepository {
+    find() {
+        return contacts;
+    }
+}
 
 module.exports = new ContactRepository();
