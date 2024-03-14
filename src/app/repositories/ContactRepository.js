@@ -19,7 +19,9 @@ const contacts = [
 
 class ContactRepository {
     find() {
-        return contacts;
+        return new Promise((resolve) => {
+            resolve(contacts);
+        });
     }
 }
 
