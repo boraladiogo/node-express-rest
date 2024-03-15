@@ -2,11 +2,11 @@ const crypto = require('node:crypto');
 
 const contacts = [
     {
-        id: crypto.randomUUID(),
+        id: 'b12f2603-c07e-4614-b89e-feadf0cbcefa',
         name: 'Diogo',
         email: 'diogo@email.com',
         phone: '12346789',
-        category: crypto.randomUUID(),
+        category: 'ca2d316b-d460-48bc-8834-96205733f661',
     },
     {
         id: crypto.randomUUID(),
@@ -21,6 +21,14 @@ class ContactRepository {
     find() {
         return new Promise((resolve) => {
             resolve(contacts);
+        });
+    }
+
+    findById(id) {
+        const contact = contacts.find((e) => e.id === id);
+
+        return new Promise((resolve) => {
+            resolve(contact);
         });
     }
 }

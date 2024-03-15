@@ -6,8 +6,11 @@ class ContactController {
         response.json(contacts);
     }
 
-    show() {
-        // Obter um único registro
+    async show(request, response) {
+        const { id } = request.params;
+        const contact = await ContactRepository.findById(id);
+
+        response.json(contact);
     }
 
     store() {
