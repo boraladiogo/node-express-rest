@@ -21,8 +21,11 @@ class ContactController {
         // Editar um registro
     }
 
-    delete() {
-        // Remover um registro
+    async delete(request, response) {
+        const { id } = request.params;
+        const newContactsList = await ContactRepository.delete(id);
+
+        response.json(newContactsList);
     }
 }
 
