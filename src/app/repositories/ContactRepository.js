@@ -1,6 +1,6 @@
 const crypto = require('node:crypto');
 
-const contacts = [
+let contacts = [
     {
         id: 'b12f2603-c07e-4614-b89e-feadf0cbcefa',
         name: 'Diogo',
@@ -29,6 +29,14 @@ class ContactRepository {
 
         return new Promise((resolve) => {
             resolve(contact);
+        });
+    }
+
+    delete(id) {
+        contacts = contacts.filter((e) => e.id !== id);
+
+        return new Promise((resolve) => {
+            resolve(contacts);
         });
     }
 }
