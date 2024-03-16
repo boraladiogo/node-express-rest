@@ -9,11 +9,11 @@ let contacts = [
         category: 'ca2d316b-d460-48bc-8834-96205733f661',
     },
     {
-        id: crypto.randomUUID(),
+        id: 'dc2d53e9-9b78-4b30-af31-4a8b655e2c6d',
         name: 'Thais',
         email: 'thais@email.com',
         phone: '987654321',
-        category: crypto.randomUUID(),
+        category: '014f3e0d-3568-4241-bc06-f6c003b87dbd',
     },
 ];
 
@@ -29,6 +29,24 @@ class ContactRepository {
 
         return new Promise((resolve) => {
             resolve(contact);
+        });
+    }
+
+    create(body) {
+        const { name, email, phone } = body;
+
+        const newContact = {
+            id: crypto.randomUUID(),
+            name,
+            email,
+            phone,
+            category: crypto.randomUUID(),
+        };
+
+        contacts.push(newContact);
+
+        return new Promise((resolve) => {
+            resolve(newContact);
         });
     }
 

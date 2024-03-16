@@ -3,6 +3,7 @@ const ContactRepository = require('../repositories/ContactRepository');
 class ContactController {
     async index(_request, response) {
         const contacts = await ContactRepository.find();
+
         response.json(contacts);
     }
 
@@ -13,8 +14,11 @@ class ContactController {
         response.json(contact);
     }
 
-    store() {
-        // Criar novo registro
+    async store(request, response) {
+        const { body } = request;
+        const newContact = await ContactRepository.create(body);
+
+        response.json(newContact);
     }
 
     update() {
