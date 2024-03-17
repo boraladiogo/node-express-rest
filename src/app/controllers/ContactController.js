@@ -21,8 +21,13 @@ class ContactController {
         response.json(newContact);
     }
 
-    update() {
-        // Editar um registro
+    async update(request, response) {
+        const { id } = request.params;
+        const { body } = request;
+
+        const updatedContact = await ContactRepository.update(id, body);
+
+        response.json(updatedContact);
     }
 
     async delete(request, response) {
