@@ -9,3 +9,8 @@ const client = new Client({
 });
 
 client.connect();
+
+exports.query = async (query) => {
+    const result = await client.query(query);
+    return result.rows;
+};
