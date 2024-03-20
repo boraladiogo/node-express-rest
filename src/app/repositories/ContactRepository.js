@@ -1,4 +1,5 @@
 const crypto = require('node:crypto');
+const database = require('../../database');
 
 let contacts = [
     {
@@ -18,10 +19,11 @@ let contacts = [
 ];
 
 class ContactRepository {
-    find() {
-        return new Promise((resolve) => {
-            resolve(contacts);
-        });
+    async find() {
+        const q = 'SELECT * FROM contacts';
+        const result = await database.query(q);
+
+        return result;
     }
 
     findById(id) {
