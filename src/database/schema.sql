@@ -1,3 +1,10 @@
+/* PostgreSQL commands:
+    \l: Lists all databases.
+    \dt: Lists all tables in the currently connected database.
+    \d: Describes a table.
+    \c: Connect to a different database. Example: \c database_name.
+*/
+
 CREATE DATABASE mycontacts;
 
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
