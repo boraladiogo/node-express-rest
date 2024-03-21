@@ -1,4 +1,3 @@
-const crypto = require('node:crypto');
 const database = require('../../database');
 
 let contacts = [
