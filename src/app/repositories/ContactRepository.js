@@ -25,12 +25,12 @@ class ContactRepository {
         return result;
     }
 
-    findById(id) {
-        const contact = contacts.find((e) => e.id === id);
+    async findById(id) {
+        const query = 'SELECT * FROM contacts WHERE id = $1';
+        const value = [id];
 
-        return new Promise((resolve) => {
-            resolve(contact);
-        });
+        const result = await database.query(query, value);
+        return result;
     }
 
     async create({
