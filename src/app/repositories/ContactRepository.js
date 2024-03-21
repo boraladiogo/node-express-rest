@@ -20,8 +20,8 @@ let contacts = [
 
 class ContactRepository {
     async find() {
-        const q = 'SELECT * FROM contacts';
-        const result = await database.query(q);
+        const query = 'SELECT * FROM contacts';
+        const result = await database.query(query);
 
         return result;
     }
@@ -34,22 +34,19 @@ class ContactRepository {
         });
     }
 
-    create(body) {
-        const { name, email, phone } = body;
+    async create({
+        name, email, phone,
+    }) {
+        const query = `
+            INSERT INTO contacts (name, email, phone)
+            VALUES ($1, $2, $3)
+            RETURNING *
+        `;
 
-        const newContact = {
-            id: crypto.randomUUID(),
-            name,
-            email,
-            phone,
-            category: crypto.randomUUID(),
-        };
+        const values = [name, email, phone];
 
-        contacts.push(newContact);
-
-        return new Promise((resolve) => {
-            resolve(newContact);
-        });
+        const result = await database.query(query, values);
+        return result;
     }
 
     update(id, body) {
