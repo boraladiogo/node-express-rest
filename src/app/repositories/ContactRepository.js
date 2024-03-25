@@ -30,7 +30,7 @@ class ContactRepository {
         const query = 'SELECT * FROM contacts WHERE id = $1';
         const value = [id];
 
-        const result = await database.query(query, value);
+        const [result] = await database.query(query, value);
         return result;
     }
 
@@ -49,24 +49,19 @@ class ContactRepository {
         return result;
     }
 
-    update(id, body) {
-        const {
-            name, email, phone, category,
-        } = body;
+    async update(id, {
+        name, email, phone,
+    }) {
+        const query = `
+            UPDATE contacts
+            SET name = $1, email = $2, phone = $3
+            WHERE id = $4
+            RETURNING *
+        `;
+        const values = [name, email, phone, id];
 
-        const updatedContact = {
-            id,
-            name,
-            email,
-            phone,
-            category,
-        };
-
-        contacts = contacts.map((e) => (e.id === id ? updatedContact : e));
-
-        return new Promise((resolve) => {
-            resolve(updatedContact);
-        });
+        const [result] = await database.query(query, values);
+        return result;
     }
 
     delete(id) {
