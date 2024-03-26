@@ -33,9 +33,9 @@ class ContactController {
 
     async delete(request, response) {
         const { id } = request.params;
-        const newContactsList = await ContactRepository.delete(id);
+        await ContactRepository.delete(id);
 
-        response.json(newContactsList);
+        response.sendStatus(204);
     }
 }
 
