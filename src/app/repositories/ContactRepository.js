@@ -1,6 +1,6 @@
 const database = require('../../database');
 
-let contacts = [
+const contacts = [
     {
         id: 'b12f2603-c07e-4614-b89e-feadf0cbcefa',
         name: 'Diogo',
@@ -64,12 +64,15 @@ class ContactRepository {
         return result;
     }
 
-    delete(id) {
-        contacts = contacts.filter((e) => e.id !== id);
+    async delete(id) {
+        const query = `
+            DELETE FROM contacts
+            WHERE id = $1
+        `;
+        const values = [id];
 
-        return new Promise((resolve) => {
-            resolve(contacts);
-        });
+        const deleteOp = await database.query(query, values);
+        return deleteOp;
     }
 }
 
