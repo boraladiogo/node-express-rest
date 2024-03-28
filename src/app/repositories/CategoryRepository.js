@@ -1,6 +1,13 @@
+const database = require('../../database');
+
 class CategoryRepository {
-    find() {
-        // List all contacts in database
+    async find() {
+        const query = `
+            SELECT * FROM categories
+        `;
+
+        const result = await database.query(query);
+        return result;
     }
 
     create() {
