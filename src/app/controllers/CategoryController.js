@@ -17,8 +17,12 @@ class CategoryController {
         response.json(newCategory);
     }
 
-    update() {
-        // Update category
+    async update(request, response) {
+        const { id } = request.params;
+        const { body } = request;
+
+        const updatedCategory = await CategoryRepository.update(id, body);
+        response.json(updatedCategory);
     }
 
     delete() {

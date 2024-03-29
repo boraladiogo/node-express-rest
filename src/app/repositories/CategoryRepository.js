@@ -22,8 +22,17 @@ class CategoryRepository {
         return result;
     }
 
-    update() {
-        // Update a contact in database
+    async update(id, { name }) {
+        const query = `
+            UPDATE categories
+            SET name = $1
+            WHERE id = $2
+            RETURNING *
+        `;
+        const values = [name, id];
+
+        const result = await database.query(query, values);
+        return result;
     }
 
     delete() {
