@@ -10,8 +10,11 @@ class CategoryController {
         // Get one category
     }
 
-    store() {
-        // Create new category
+    async store(request, response) {
+        const { body } = request;
+        const newCategory = await CategoryRepository.create(body);
+
+        response.json(newCategory);
     }
 
     update() {

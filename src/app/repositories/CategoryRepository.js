@@ -10,8 +10,16 @@ class CategoryRepository {
         return result;
     }
 
-    create() {
-        // Create new contact in database
+    async create({ name }) {
+        const query = `
+            INSERT INTO categories (name)
+            VALUES ($1)
+            RETURNING *
+        `;
+        const values = [name];
+
+        const result = await database.query(query, values);
+        return result;
     }
 
     update() {
