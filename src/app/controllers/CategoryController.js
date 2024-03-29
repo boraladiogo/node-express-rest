@@ -25,8 +25,11 @@ class CategoryController {
         response.json(updatedCategory);
     }
 
-    delete() {
-        // Delete category
+    async delete(request, response) {
+        const { id } = request.params;
+
+        await CategoryRepository.delete(id);
+        response.sendStatus(204);
     }
 }
 

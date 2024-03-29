@@ -35,8 +35,15 @@ class CategoryRepository {
         return result;
     }
 
-    delete() {
-        // Delete a contact in database
+    async delete(id) {
+        const query = `
+            DELETE FROM categories
+            WHERE id = $1
+        `;
+        const values = [id];
+
+        const deleteOp = await database.query(query, values);
+        return deleteOp;
     }
 }
 
