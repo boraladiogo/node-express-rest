@@ -18,15 +18,15 @@ class ContactRepository {
     }
 
     async create({
-        name, email, phone,
+        name, email, phone, category_id,
     }) {
         const query = `
-            INSERT INTO contacts (name, email, phone)
-            VALUES ($1, $2, $3)
+            INSERT INTO contacts (name, email, phone, category_id)
+            VALUES ($1, $2, $3, $4)
             RETURNING *
         `;
 
-        const values = [name, email, phone];
+        const values = [name, email, phone, category_id];
 
         const result = await database.query(query, values);
         return result;
