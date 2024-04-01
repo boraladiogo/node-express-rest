@@ -3,7 +3,12 @@ const database = require('../../database');
 class ContactRepository {
     async find(orderBy = 'ASC') {
         const direction = orderBy.toUpperCase() === 'DESC' ? 'DESC' : 'ASC';
-        const query = `SELECT * FROM contacts ORDER BY name ${direction}`;
+        const query = `
+            SELECT contacts.*, categories.name AS category_name
+            FROM contacts
+            LEFT JOIN categories
+            ON categories.id = contacts.category_id
+            ORDER BY name ${direction}`;
 
         const result = await database.query(query);
         return result;
