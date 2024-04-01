@@ -10,6 +10,17 @@ class CategoryRepository {
         return result;
     }
 
+    async findById(id) {
+        const query = `
+            SELECT * FROM categories
+            WHERE id = $1
+        `;
+        const values = [id];
+
+        const result = await database.query(query, values);
+        return result;
+    }
+
     async create({ name }) {
         const query = `
             INSERT INTO categories (name)
